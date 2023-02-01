@@ -1,10 +1,56 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+import { useToast } from "vue-toastification";
+import request from './utils/request';
+export default {
+  data () {
+    return {
+      webSetting: null
+    }
+  },
+  setup () {
+    // Get toast interface
+    const toast = useToast();
+    // These options will override the options defined in the "app.use" plugin registration for this specific toast
+
+    // Make it available inside methods
+    return { toast }
+  },
+  mounted: {
+    getWebSettings () {
+      let url = "/sop-api/sop/v1/web-settings"
+      request.get(url)
+        .then(res => {
+          this.webSetting = res
+        })
+        .catch((err) => {
+          console.log(err);
+          this.toast.error("网站配置获取失败，请刷新页面重试", {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          });
+        })
+    }
+  },
+  mounted () {
+    this.getWebSettings();
+  }
+}
 </script>
 
 <template>
   <header id="Navigation">
-    <nav>
+    <nav id="NavigationItem">
       <div id="brand">
         <!-- if ($this->options->logoUrl):-->
         <div id="logo">

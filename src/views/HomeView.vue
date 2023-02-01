@@ -3,6 +3,7 @@ import newList from '../components/index/newList.vue';
 import sidebar from '../components/sidebar.vue';
 import bookSwiper from '../components/index/bookSwiper.vue';
 import topSwiper from '../components/index/topSwiper.vue';
+
 </script>
 
 <template>

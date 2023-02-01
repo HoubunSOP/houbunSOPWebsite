@@ -9,192 +9,23 @@
   loadPrevNextAmount: 8,
 }" :mousewheel="{ sensitivity: 6 }">
       <!--此处开始卡片循环-->
-      <swiper-slide>
+      <swiper-slide v-for="item in mangaList" v-bind:key="item">
         <div class="SwiperCard">
           <div class="SwiperCardTag">
-            1/23
+            {{ item.release_date.substring(5) }}
           </div>
           <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
+            <router-link :to="'/manga/' + item.id">
+              <img v-if="item.thumbnail.guid" :data-src="item.thumbnail.guid" alt="" width="1055" height="1500"
+                class="alignnone size-full wp-image-60148 swiper-lazy">
+              <img v-else data-src="https://houbunsha.co.jp/img/mv_img/con_item_nPrn_2.png" alt="" width="1055"
                 height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
               <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
+            </router-link>
             <p>
             </p>
             <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="SwiperCard">
-          <div class="SwiperCardTag">
-            1/23
-          </div>
-          <div>
-            <a href="<?php $recent->permalink();?>">
-              <img data-src="http://yurinavi.com/wp-content/uploads/2023/01/nurumeta-3.jpg" alt="" width="1055"
-                height="1500" class="alignnone size-full wp-image-60148 swiper-lazy">
-              <img data-src="https://houbunsha.co.jp/img/mv_img/label_4.gif" class="swiper-lazy">
-            </a>
-            <p>
-            </p>
-            <div style="font-size: 1em; line-height: 20px;text-align:center;">
-              qwq
+              {{ item.title.rendered }}
             </div>
           </div>
         </div>
@@ -207,6 +38,7 @@
 </template>
 
 <script>
+import request from '../../utils/request';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Scrollbar, Mousewheel, Lazy } from 'swiper';
@@ -227,6 +59,26 @@ export default {
       modules: [Mousewheel, Lazy, Scrollbar],
     };
   },
+  data () {
+    return {
+      mangaList: null
+    }
+  },
+  methods: {
+    getMangaList () {
+      let url = "/sop-api/wp/v2/mangas"
+      request.get(url)
+        .then(res => {
+          this.mangaList = res
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    },
+  },
+  mounted () {
+    this.getMangaList();
+  }
 };
 </script>
 

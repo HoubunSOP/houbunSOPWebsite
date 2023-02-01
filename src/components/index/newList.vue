@@ -22,30 +22,81 @@
       </p>
     </div>
   </div>
-  <!--文章循环开始-->
+
   <div class="newsList">
     <ul id="npcatch-top">
-      <li class="post-list">
-        <a href="<?php $this->permalink(); ?>">
-          <img src="https://houbunsha.co.jp/img/mv_img/con_item_nPrn_2.png" width="120px" height="10" />
+      <!--文章循环开始-->
+      <li v-for="item in newsList" v-bind:key="item" class="post-list">
+        <a :href="'/post/' + item.id">
+          <div v-if="item.featured_image_url">
+            <img :src="item.featured_image_url" width="120px" height="10" />
+          </div>
+          <div v-else>
+            <img src="https://houbunsha.co.jp/img/mv_img/con_item_nPrn_2.png" width="120px" height="10" />
+          </div>
         </a>
         <span class="title">
-          <a href="<?php $this->permalink() ?>">
-            qwq
+          <router-link :to="'/post/' + item.id">
+            {{ item.title.rendered }}
             <span class="date">
-              1/26
+              {{ item.date }}
             </span>
-          </a>
+          </router-link>
         </span>
       </li>
+      <!--文章循环结束-->
     </ul>
   </div>
-  <!--文章循环结束-->
+
 </template>
 
 <script>
-export default {
+import request from '../../utils/request';
+import { useToast } from "vue-toastification";
 
+export default {
+  setup () {
+    // Get toast interface
+    const toast = useToast();
+    // These options will override the options defined in the "app.use" plugin registration for this specific toast
+
+    // Make it available inside methods
+    return { toast }
+  },
+  data () {
+    return {
+      newsList: null
+    }
+  },
+  methods: {
+    getNewsList () {
+      let url = "/sop-api/wp/v2/posts"
+      request.get(url)
+        .then(res => {
+          this.newsList = res
+        })
+        .catch((err) => {
+          console.log(err);
+          this.toast.error("API获取失败，请刷新页面重试", {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          });
+        })
+    },
+  },
+  mounted () {
+    this.getNewsList();
+  }
 }
 </script>
 
