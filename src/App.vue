@@ -16,35 +16,31 @@ export default {
     // Make it available inside methods
     return { toast }
   },
-  mounted: {
-    getWebSettings () {
-      let url = "/sop-api/sop/v1/web-settings"
-      request.get(url)
-        .then(res => {
-          this.webSetting = res
-        })
-        .catch((err) => {
-          console.log(err);
-          this.toast.error("网站配置获取失败，请刷新页面重试", {
-            position: "top-right",
-            timeout: 5000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false
-          });
-        })
-    }
+  created () {
+    let url = "/sop-api/wp/v2/sop/web-settings"
+    request.get(url)
+      .then(res => {
+        this.webSetting = res
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+        this.toast.error("网站配置获取失败，请刷新页面重试", {
+          position: "top-right",
+          timeout: 5000,
+          closeOnClick: true,
+          pauseOnFocusLoss: true,
+          pauseOnHover: true,
+          draggable: true,
+          draggablePercent: 0.6,
+          showCloseButtonOnHover: false,
+          hideProgressBar: true,
+          closeButton: "button",
+          icon: true,
+          rtl: false
+        });
+      })
   },
-  mounted () {
-    this.getWebSettings();
-  }
 }
 </script>
 
@@ -53,15 +49,15 @@ export default {
     <nav id="NavigationItem">
       <div id="brand">
         <!-- if ($this->options->logoUrl):-->
-        <div id="logo">
+        <div v-if="webSetting.logo.ID" id="logo">
           <a href="/">
-            <img src="<!-- $this->options->logoUrl() -->" alt="<!-- $this->options->title() -->">
+            <img :src="webSetting.logo.guid" :alt="webSetting.web_title">
           </a>
         </div>
         <!-- else: -->
-        <div id="logoText">
+        <div v-else id="logoText">
           <a href="/">
-            <!-- $this->options->title() -->
+            {{ webSetting.web_title }}
           </a>
         </div>
         <!-- endif; -->
@@ -75,7 +71,7 @@ export default {
           </div>
         </div>
         <ul>
-          <li><a href="<!-- $this->options->siteUrl(); -->">首页</a></li>
+          <li><a href="/">首页</a></li>
           <!-- 
           \Widget\Contents\Page\Rows::alloc()->to($pages);
           while ($pages->next()): 

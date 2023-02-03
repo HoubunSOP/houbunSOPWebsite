@@ -1,4 +1,9 @@
 <template>
+  <div style="padding: 3px 20px; margin: 15px 0;">
+    <span class="NewBookTitle">
+      未来发售的单行本🔭
+    </span>
+  </div>
   <div class="swiper NewBookSwiper">
     <swiper :modules="modules" :space-between="30" :slides-per-view="'auto'" :scrollbar="{
       el: '.swiper-scrollbar',
@@ -73,6 +78,20 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+          this.toast.error("API获取失败，请刷新页面重试", {
+            position: "top-right",
+            timeout: 5000,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.6,
+            showCloseButtonOnHover: false,
+            hideProgressBar: true,
+            closeButton: "button",
+            icon: true,
+            rtl: false
+          });
         })
     },
   },

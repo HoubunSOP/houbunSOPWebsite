@@ -1,5 +1,6 @@
 @import './base.css';
 @import './grid.css';
+@import './normalize.css';
 @import './color/theme.css';
 body {
   background: url(https://s2.loli.net/2023/01/27/SU9M1XWPgdycYAF.jpg);
